@@ -1,0 +1,14 @@
+version: '2'
+services:
+  app:
+    image: nest-scaffold
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '3020:3020'
+    environment:
+      NODE_ENV: production
+    links:
+      - mysql
+      - redis
