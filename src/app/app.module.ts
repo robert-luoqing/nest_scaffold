@@ -9,6 +9,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from '../common/auth/auth.module';
+import { ClientsModule, Transport } from '@nestjs/microservices';
 
 @Module({
   imports: [
@@ -33,6 +34,16 @@ import { AuthModule } from '../common/auth/auth.module';
       },
       inject: [ConfigService], // 注入 ConfigService
     }),
+    ClientsModule.register([
+      {
+        name: 'REDIS_CLIENT',
+        transport: Transport.REDIS,
+        options: {
+          host: 'localhost',
+          port: 6379,
+        },
+      },
+    ]),
     ExampleModule,
     UserModule,
     UploadModule,

@@ -1,9 +1,10 @@
+import { eventName, queueName } from './../common/model/eventName';
 import { Processor, Process } from '@nestjs/bull';
 import { Job } from 'bull';
 
-@Processor('task-sample-queue')
+@Processor(queueName.sample)
 export class queueTaskProcessor {
-  @Process('task-name')
+  @Process(eventName.example)
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   async handleTask(job: Job) {
     // 处理任务
